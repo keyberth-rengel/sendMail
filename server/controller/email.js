@@ -36,6 +36,7 @@ exports.emailSend = async (req, res) => {
         if (error) {
             return res.status(400).json({
                 ok:false,
+                error,
                 message: 'No se envio el mensaje, Intentelo nuevamente'
             })
         }
