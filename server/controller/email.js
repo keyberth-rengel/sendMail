@@ -17,13 +17,15 @@ exports.emailSend = async (req, res) => {
         }
     });
 
-    let mensaje = `Nombre: ${body.nombre}
+    let mensaje = `
+    Nombre: ${body.nombre}
     
     Mail: ${body.correo}
     
     Asunto: ${body.asunto}
     
-    ${body.contenido}`;
+    ${body.contenido}
+    `;
 
     let opcionEmail = {
         from: body.nombre || body.correo, 
