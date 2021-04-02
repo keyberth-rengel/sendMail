@@ -19,43 +19,40 @@ exports.emailSend = async (req, res) => {
 
   let mensaje = "";
   const {
-    user_name,
-    email_user,
-    hora_reservada,
-    fecha_reservada,
-    typeMsg,
+    carType,
+    driverName,
+    driverContact,
+    carModel,
+    carNo,
+    customer_name,
+    numberEconomic,
+    user,
+    hora_emit
   } = body;
 
-  if (typeMsg === "taller") {
-    const { nombre_taller, link_taller } = body;
+  mensaje = `
+  Hora Emitida = ${hora_emit}
+  
+  Alerta emitida por el usuario = ${user} 
 
-    mensaje = `
-    Taller inscrito exitosamente
+  Nombre Cliente = ${customer_name}
 
-    Estimado ${user_name}
+  Numero Economico = ${numberEconomic}
+
+  Nombre Conductor = ${driverName} 
+
+  Placa del vehiculo = ${carNo}
   
-    Se ha inscrito al taller ${nombre_taller}. Para participar del taller debe ingresar por este link ${link_taller} el día ${fecha_reservada} a las ${hora_reservada}.
-  
-    En caso de cancelar se avisará por correo.
-  
-    Ccdn App`;
-  } else {
-    const { nombre_doctor } = body;
-    mensaje = `
-    Hora agendada exitosamente
-    
-    Estimado ${user_name}
-    
-    Se ha agendado una hora con ${nombre_doctor}, el día ${fecha_reservada} a las ${hora_reservada}.
-    
-    En caso de cancelar la hora se avisará con antelación.
-    
-    Ccdn App`;
-  }
+  Tipo de servicio = ${carType}
+
+  Modelo del Vehiculo = ${carModel}
+
+  Numero de Contacto del conductor = ${driverContact}
+`;
 
   let opcionEmail = {
     from: process.env.MAIL,
-    to: email_user,
+    to: "cuvera50@gmail.com",
     subject: body.asunto || "Importante",
     text: mensaje,
   };
