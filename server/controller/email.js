@@ -19,40 +19,25 @@ exports.emailSend = async (req, res) => {
 
   let mensaje = "";
   const {
-    carType,
-    driverName,
-    driverContact,
-    carModel,
-    carNo,
-    customer_name,
-    numberEconomic,
-    user,
-    hora_emit
+    user_name,
+    email_user,
+    typeMsg,
+    mensj,
   } = body;
 
   mensaje = `
-  Hora Emitida = ${hora_emit}
-  
-  Alerta emitida por el usuario = ${user} 
+  Nombre Cliente = ${user_name}
 
-  Nombre Cliente = ${customer_name}
+  Email Cliente = ${email_user}
 
-  Numero Economico = ${numberEconomic}
+  Asunto = ${typeMsg}
 
-  Nombre Conductor = ${driverName} 
-
-  Placa del vehiculo = ${carNo}
-  
-  Tipo de servicio = ${carType}
-
-  Modelo del Vehiculo = ${carModel}
-
-  Numero de Contacto del conductor = ${driverContact}
+  Mensaje = ${mensj} 
 `;
 
   let opcionEmail = {
     from: process.env.MAIL,
-    to: "cuvera50@gmail.com",
+    to: "keyrengel24@gmail.com",
     subject: body.asunto || "Importante",
     text: mensaje,
   };
